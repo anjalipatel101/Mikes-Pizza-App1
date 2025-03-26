@@ -1,0 +1,18 @@
+* {
+    background-color: #f2f2f2;
+}
+
+.cart-content {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cart-content h1 {
+    width: 1180px;
+    font-weight: bolder;
+    font-size: 36px;
+    margin: 35px auto;
+    color: #0069a7;
+} 
