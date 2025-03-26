@@ -1,6 +1,7 @@
 "use client";
-// import { useState, useEffect } from "react";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import "./globals.css";
 // import { generateClient } from "aws-amplify/data";
 // import type { Schema } from "@/amplify/data/resource";
@@ -13,18 +14,18 @@ import React from "react";
 // Amplify.configure(outputs);
 // const client = generateClient<Schema>();
 
-export default function HomePage() {
-  const [todos, setTodos] = useState<Array<{ id: string; content: string }>>([]);
+export default function App() {
+  const router = useRouter();
 
-  // function listTodos() {
-  //   client.models.Todo.observeQuery().subscribe({
-  //     next: (data) => setTodos([...data.items]),
-  //   });
-  // }
+  useEffect(() => {
+    router.push("/home");
+  }, [router]);
 
-  // useEffect(() => {
-  //   listTodos();
-  // }, []);
+  return null;
+}
+
+export function HomePage() {
+  const [todos, setTodos] = useState<Array<{ id: string; content: string | null }>>([]);
 
   function createTodo() {
     const content = window.prompt("Todo content");
@@ -40,3 +41,4 @@ export default function HomePage() {
     </div>
   );
 }
+
