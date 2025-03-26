@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "./globals.css";
-import "./../app/app.css";
 // import { generateClient } from "aws-amplify/data";
 // import type { Schema } from "@/amplify/data/resource";
 // import { Amplify } from "aws-amplify";
@@ -22,6 +20,4 @@ export default function App() {
 
   return null;
 }
-
-
 
