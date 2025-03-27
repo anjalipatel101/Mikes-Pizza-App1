@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  optimizeFonts: true,
   images: {
-    domains: ['localhost'],
+    domains: ['fonts.gstatic.com'],
     unoptimized: true
   }
 }
