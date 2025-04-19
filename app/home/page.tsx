@@ -246,8 +246,9 @@ export default function HomePage() {
             <div className="text-center sm:text-left">
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
+                <li><Link href="/" className="hover:text-gray-200 transition duration-300">Home</Link></li>
                 <li><Link href="/menu" className="hover:text-gray-200 transition duration-300">Menu</Link></li>
-                <li><Link href="/locations" className="hover:text-gray-200 transition duration-300">Locations</Link></li>
+                <li><Link href="/track-order" className="hover:text-gray-200 transition duration-300">Track Order</Link></li>
                 <li><Link href="/about" className="hover:text-gray-200 transition duration-300">About Us</Link></li>
               </ul>
             </div>
