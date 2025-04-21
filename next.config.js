@@ -2,12 +2,19 @@
 const nextConfig = {
   optimizeFonts: true,
   images: {
-    domains: ['example.com', 'images.unsplash.com', 'via.placeholder.com'], // Add your actual image domains here
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'example.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      }
     ],
   }
 }
