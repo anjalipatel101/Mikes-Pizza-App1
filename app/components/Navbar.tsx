@@ -4,10 +4,13 @@ import Link from "next/link";
 import { FaPizzaSlice, FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+	const { getTotalItems } = useCart();
+	const totalItems = getTotalItems();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -53,9 +56,11 @@ const Navbar = () => {
 							className="bg-white p-2 rounded flex items-center justify-center hover:bg-gray-100 transition relative"
 						>
 							<FaShoppingCart className="text-[#0069a7] text-xl" />
-							<span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center absolute -top-2 -right-2">
-								0
-							</span>
+							{totalItems > 0 && (
+								<span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center absolute -top-2 -right-2">
+									{totalItems}
+								</span>
+							)}
 						</Link>
 					</div>
 
@@ -66,9 +71,11 @@ const Navbar = () => {
 							className="bg-white p-2 rounded flex items-center justify-center hover:bg-gray-100 transition relative"
 						>
 							<FaShoppingCart className="text-[#0069a7] text-xl" />
-							<span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center absolute -top-2 -right-2">
-								0
-							</span>
+							{totalItems > 0 && (
+								<span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center absolute -top-2 -right-2">
+									{totalItems}
+								</span>
+							)}
 						</Link>
 						<button
 							onClick={() => setIsOpen(!isOpen)}

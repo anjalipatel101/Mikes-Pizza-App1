@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { FaPizzaSlice } from 'react-icons/fa';
+import { useCart } from '../context/CartContext';
 
 interface MenuItemProps {
   id: string;
@@ -9,7 +10,6 @@ interface MenuItemProps {
   description: string;
   price: number;
   image: string;
-  onAddToCart: (id: string) => void;
 }
 
 export default function MenuItem({ 
@@ -18,8 +18,19 @@ export default function MenuItem({
   description, 
   price, 
   image,
-  onAddToCart 
 }: MenuItemProps) {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      name,
+      description,
+      price,
+      image,
+    });
+  };
+
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="relative h-48 w-full bg-gray-200">
@@ -44,7 +55,7 @@ export default function MenuItem({
           <span className="text-lg font-bold">${price.toFixed(2)}</span>
           <button 
             className="bg-[#0069a7] text-white px-4 py-2 rounded hover:bg-[#005286] transition duration-300"
-            onClick={() => onAddToCart(id)}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>

@@ -107,11 +107,6 @@ export default function MenuPage() {
     ? menuItems 
     : menuItems.filter(item => item.category === selectedCategory);
 
-  const handleAddToCart = (id: string) => {
-    // TODO: Implement cart functionality
-    console.log(`Added item ${id} to cart`);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <main className="flex-grow">
@@ -140,7 +135,6 @@ export default function MenuPage() {
                 <MenuItem
                   key={item.id}
                   {...item}
-                  onAddToCart={handleAddToCart}
                 />
               ))}
             </div>

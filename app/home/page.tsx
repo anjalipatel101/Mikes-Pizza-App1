@@ -3,8 +3,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "../components/Footer";
+import { useCart } from "../context/CartContext";
 
 interface PizzaCard {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -13,24 +15,28 @@ interface PizzaCard {
 
 const popularPizzas: PizzaCard[] = [
   {
+    id: "home-1",
     name: "Margherita",
     description: "Fresh tomatoes, mozzarella, basil",
     price: 12.99,
     imagePath: "/images/margherita_pizza.jpg"
   },
   {
+    id: "home-2",
     name: "Pepperoni",
     description: "Pepperoni, cheese, tomato sauce",
     price: 14.99,
     imagePath: "/images/pep.png"
   },
   {
+    id: "home-3",
     name: "BBQ Chicken",
     description: "Chicken, BBQ sauce, onions",
     price: 15.99,
     imagePath: "/images/bbq_pizza.jpg"
   },
   {
+    id: "home-4",
     name: "Veggie Supreme",
     description: "Bell peppers, mushrooms, olives",
     price: 13.99,
@@ -39,6 +45,18 @@ const popularPizzas: PizzaCard[] = [
 ];
 
 export default function HomePage() {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (pizza: PizzaCard) => {
+    addToCart({
+      id: pizza.id,
+      name: pizza.name,
+      description: pizza.description,
+      price: pizza.price,
+      image: pizza.imagePath,
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-grow">
@@ -200,8 +218,8 @@ export default function HomePage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Most Popular Pizzas</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-              {popularPizzas.map((pizza, index) => (
-                <div key={index} className="bg-white rounded-lg overflow-hidden shadow transform transition duration-300 hover:shadow-lg">
+              {popularPizzas.map((pizza) => (
+                <div key={pizza.id} className="bg-white rounded-lg overflow-hidden shadow transform transition duration-300 hover:shadow-lg">
                   <div className="relative h-48 w-full">
                     <Image
                       src={pizza.imagePath}
@@ -216,7 +234,10 @@ export default function HomePage() {
                     <p className="text-gray-600 text-sm mb-4">{pizza.description}</p>
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
                       <span className="font-bold text-lg">${pizza.price.toFixed(2)}</span>
-                      <button className="w-full sm:w-auto bg-[#0069a7] text-white px-4 py-2 rounded hover:bg-[#005286] transition duration-300">
+                      <button 
+                        onClick={() => handleAddToCart(pizza)}
+                        className="w-full sm:w-auto bg-[#0069a7] text-white px-4 py-2 rounded hover:bg-[#005286] transition duration-300"
+                      >
                         Add to Cart
                       </button>
                     </div>
